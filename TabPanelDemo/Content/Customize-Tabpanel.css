@@ -1,0 +1,50 @@
+﻿/* filterable content container - z-index testing  */
+.filterableContentContainer {
+    z-index: 1;
+    position: relative;  
+}
+
+/* add tab panel border */
+.panelBorder 
+{
+    width: 100%;
+    padding: 8px;
+    background-color: #E0E0E0;   
+    z-index: 1000;  
+    position: absolute;  
+}
+    
+/* spacing for tab pane around checkboxes */
+.tab-pane {
+    padding: 8px 8px 16px 16px;
+}
+
+/* tab panel background color */
+.tab-content {
+    background-color: #FFFFFF;
+}
+
+/* space checkboxes closer */
+.checkbox
+{
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+/* hide a single pixel left border artifact on first tab when using tab panel border */
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover
+{
+    border-left-style: none;
+}   
+
+/* according toggle entire panel */
+a.accordion-toggle 
+{
+    display: block;
+    padding: 10px  15px;
+}
+
+div.panel-heading 
+{
+    padding: 0;
+}

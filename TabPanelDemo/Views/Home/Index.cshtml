@@ -1,0 +1,25 @@
+﻿@model List<TabPanelDemo.Models.Tab>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<!--  tab panel filter test functions -->
+<div class="filterableContentContainer col-md-12">
+    <button type="button" class="btn btn-primary" id="btn-setCheckBox">Set Checkbox 21 by data-id</button> <button type="button" class="btn btn-danger" id="btn-clear">Clear Checkboxes</button>
+    <br />
+</div>
+
+
+
+<!-- container to test z-index layering -->
+<div class="filterableContentContainer col-md-12">
+    <!-- tab panel filter -->
+    <form role="form">
+        @Html.Partial("_ResponsiveTabPanel", Model)
+    </form>
+    <!-- filterable content z-indexing test -->
+    <div id="filterableContent" style="margin-top: 40px;">
+        @Html.Partial("_LoremIpsum", Model)
+    </div>
+</div>

@@ -1,0 +1,67 @@
+﻿@model List<TabPanelDemo.Models.Tab>
+
+@{ 
+    int columns = 4;
+    bool hideActivePanelonStart = false; // disable active tab and tab pane onloading
+
+    string activeTab = "";
+    string activePane = "";
+    int rowCount = 0;
+    int globalIndex = 1;
+    string tabActive = "";
+    string tabPaneActive = " ";
+
+    if (hideActivePanelonStart)
+    {
+        tabActive = "active";
+        tabPaneActive = " active";
+    }
+}
+
+<div class="panelBorder">
+    <ul class="nav nav-tabs responsive" id="myTab">
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            if (i == 0) { activeTab = "class=\"" + tabActive + "\""; } else { activeTab = ""; }
+            <li @Html.Raw(activeTab)><a href="#Tab@(i)">@Model[i].Name <span class="glyphicon glyphicon-triangle-bottom"></span></a></li>
+        }
+    </ul>
+
+    <div class="tab-content responsive">
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            if (i == 0) { activePane = "tab-pane" + tabPaneActive; } else { activePane = "tab-pane"; }
+            <div class="@Html.Raw(activePane)" id="Tab@(i)">
+
+                @{
+                    int cbIndex = 0;
+                    rowCount = Convert.ToInt32(Math.Ceiling((decimal)Model[i].Checkboxes.Count() / (decimal)columns));
+                }
+
+                @for (int r = 0; r < rowCount; r++)
+                {
+                    <div class="row">
+                        @for (int c = 0; c < columns; c++)
+                        {
+                            if (cbIndex < Model[i].Checkboxes.Count())
+                            {
+                                <div class="col-md-2">                                    
+                                    <div class="checkbox checkbox-success">
+                                        <input type="checkbox" id="@Model[i].Checkboxes[cbIndex].Id" data-id="@Model[i].Checkboxes[cbIndex].DataId" data-facetname="@Model[i].Checkboxes[cbIndex].DataFacetName">
+                                        <label for="custom-checkbox">
+                                            @Model[i].Checkboxes[cbIndex].Description (@Model[i].Checkboxes[cbIndex].Count)
+                                        </label>
+                                    </div>                                 
+                                </div>
+
+                                cbIndex++;
+                                globalIndex++;
+                            }
+
+                        }
+                    </div>
+                }
+            </div>
+       }
+    </div>
+</div>

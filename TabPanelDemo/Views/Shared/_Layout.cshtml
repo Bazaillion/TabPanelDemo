@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap-select.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link href="~/Content/build.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/customize-tabpanel.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+
+    <script src="~/Scripts/jquery-1.11.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/responsive-tabs.js"></script>
+    <script src="~/Scripts/bootstrap-select.min.js"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+
+        // make tabs toggle on / off
+        $('#myTab a').click(function (e) {
+            var tab = $(this);
+            if (tab.parent('li').hasClass('active')) {
+                window.setTimeout(function () {
+                    $(".tab-pane").removeClass('active');
+                    tab.parent('li').removeClass('active');
+                }, 1);
+            }
+        });
+
+        // intialize responsive tabs
+        $('ul.nav.nav-tabs a').click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+        });
+        
+        fakewaffle.responsiveTabs(['xs', 'sm']);
+
+        // bind some test buttons and functions        
+        $('#btn-clear').click(function (e) {
+            clearFilterCheckboxes();
+        });
+
+        $('#btn-setCheckBox').click(function (e) {
+            setCheckBoxByDataId();
+        });
+
+        // function clear all filter checkboxes
+        function clearFilterCheckboxes() {
+            $('.tab-pane :checkbox:enabled').prop('checked', false);
+        }
+
+        function setCheckBoxByDataId() {
+            $('input[data-id="f4527f17-c05d-4811-afc7-3bfb65772136"]').prop('checked', true);
+        }
+
+    });
+    </script>
+</body>
+</html>
